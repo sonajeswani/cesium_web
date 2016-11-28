@@ -2,6 +2,7 @@ import React from 'react';
 import { connect, Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import ReactTabs from 'react-tabs';
+import Tour from 'react-user-tour';
 
 import 'bootstrap-css';
 import 'bootstrap';
@@ -32,10 +33,39 @@ const messageHandler = (new MessageHandler(store.dispatch)).handle;
 
 
 class MainContent extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      isTourActive: false,
+      tourStep: 1
+    }
+  }
+
+
   componentDidMount() {
     store.dispatch(Action.hydrate());
+    this.setState({
+      isTourActive: true
+    });
   }
+
+
   render() {
+
+      const tourTitleStyle = { //added this!
+      fontWeight: 700,
+      fontSize: 16,
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 10
+    };
+
+    const tourMessageStyle = { //added this!
+      fontSize: 12,
+      paddingLeft: 10
+    };
+
     const config = {
       sidebar: 300,
       topbar: '4em',
@@ -213,6 +243,7 @@ class MainContent extends React.Component {
                 src="images/cesium-blue-dark.png"
                 alt="Cesium Logo"
                 onClick={this.props.spinLogo}
+                onClick={() => this.setState({isTourActive: true, tourStep: 1})} //added this
                 style={{ ...(style.logo.img), ...rotateStyle }}
               />
             </div>
@@ -250,6 +281,55 @@ class MainContent extends React.Component {
         <div className="mainContent" style={style.main}>
 
           <Notifications style={style.notifications} />
+
+          <Tour //added this tour tag
+            active={this.state.isTourActive}
+            step={this.state.tourStep}
+            onNext={(step) => this.setState({tourStep: step})}
+            onBack={(step) => this.setState({tourStep: step})}
+            onCancel={() => this.setState({isTourActive: false})}
+            steps={[
+              {
+                step: 1,
+                selector: ".stop-1",
+                title: <div style={tourTitleStyle}>React User Tour</div>,
+                body: <div style={tourMessageStyle}>Provide a simple guided tour around a website utilizing css selectors.</div>,
+                position: "bottom"
+              },
+              {
+                step: 2,
+                selector: ".stop-2",
+                title: <div style={tourTitleStyle}>Simply</div>,
+                body: <div style={tourMessageStyle}>pass in a class class prefixe with `.` or id prefixed with `#`</div>
+              },
+              {
+                step: 3,
+                selector: ".stop-3",
+                title: <div style={tourTitleStyle}>And</div>,
+                body: <div style={tourMessageStyle}>React User Tour will figure out where to position the element.</div>
+              },
+              {
+                step: 4,
+                selector: ".stop-4",
+                title: <div style={tourTitleStyle}>Wow</div>,
+                body: <div style={tourMessageStyle}>That sounds amazing, can it be true?</div>
+              },
+              {
+                step: 5,
+                selector: ".stop-5",
+                title: <div style={tourTitleStyle}>Yes</div>,
+                body: <div style={tourMessageStyle}>and guess what?</div>
+              },
+              {
+                step: 6,
+                selector: ".stop-6",
+                title: <div style={tourTitleStyle}>What?</div>,
+                body: <div style={tourMessageStyle}>well even take care of scrolling to elements outside of the viewbox. Enjoy! </div>
+              }
+            ]}
+          />
+
+
 
           <Tabs>
             <TabList style={style.tabs}>
