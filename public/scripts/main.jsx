@@ -42,14 +42,12 @@ class MainContent extends React.Component {
     }
   }
 
-
   componentDidMount() {
     store.dispatch(Action.hydrate());
     this.setState({
       isTourActive: true
     });
   }
-
 
   render() {
 
@@ -233,8 +231,8 @@ class MainContent extends React.Component {
       transform: rotate
     };
     return (
-      <div>
 
+      <div> 
         <div style={style.topbar}>
           <div style={style.topbar.text}>
             <div style={style.topbar.header}>
@@ -280,6 +278,15 @@ class MainContent extends React.Component {
 
         <div className="mainContent" style={style.main}>
 
+        <div
+          style={{width: 10, height: 20, left: "15%", top: "40%", position: "absolute", backgroundColor: "red"}}
+          className="stop-1"
+        />
+          <div
+          style={{width: 10, height: 20, left: "25%", top: "40%", position: "absolute", backgroundColor: "blue"}}
+          className="stop-2"
+        />
+
           <Notifications style={style.notifications} />
 
           <Tour //added this tour tag
@@ -292,33 +299,37 @@ class MainContent extends React.Component {
               {
                 step: 1,
                 selector: ".stop-1",
-                title: <div style={tourTitleStyle}>React User Tour</div>,
-                body: <div style={tourMessageStyle}>Provide a simple guided tour around a website utilizing css selectors.</div>,
-                position: "bottom"
+                title: <div style={tourTitleStyle}>Welcome to Cesium!</div>,
+                body: <div style={tourMessageStyle}>Create a new project to begin. You can also choose from your existing projects.</div>,
+                //position: "bottom"
               },
               {
                 step: 2,
                 selector: ".stop-2",
-                title: <div style={tourTitleStyle}>Simply</div>,
-                body: <div style={tourMessageStyle}>pass in a class class prefixe with `.` or id prefixed with `#`</div>
+                title: <div style={tourTitleStyle}>Upload a dataset!</div>,
+                body: <div style={tourMessageStyle}>Upload the dataset you would like to analyze.</div>,
+                position: "bottom"
               },
               {
                 step: 3,
                 selector: ".stop-3",
-                title: <div style={tourTitleStyle}>And</div>,
-                body: <div style={tourMessageStyle}>React User Tour will figure out where to position the element.</div>
+                title: <div style={tourTitleStyle}>Compute Features!</div>,
+                body: <div style={tourMessageStyle}>Select features you would like to compute!</div>,
+                position: "bottom"
               },
               {
                 step: 4,
                 selector: ".stop-4",
-                title: <div style={tourTitleStyle}>Wow</div>,
-                body: <div style={tourMessageStyle}>That sounds amazing, can it be true?</div>
+                title: <div style={tourTitleStyle}>Create Models!</div>,
+                body: <div style={tourMessageStyle}>Create a new model by choosing the model type and selecting the parameters.</div>,
+                position: "bottom"
               },
               {
                 step: 5,
                 selector: ".stop-5",
-                title: <div style={tourTitleStyle}>Yes</div>,
-                body: <div style={tourMessageStyle}>and guess what?</div>
+                title: <div style={tourTitleStyle}>Make predictions!</div>,
+                body: <div style={tourMessageStyle}>Select your dataset and model to make a prediction.</div>,
+                position: "bottom"
               },
               {
                 step: 6,
@@ -328,8 +339,6 @@ class MainContent extends React.Component {
               }
             ]}
           />
-
-
 
           <Tabs>
             <TabList style={style.tabs}>
