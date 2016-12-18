@@ -255,18 +255,19 @@ class MainContent extends React.Component {
           <div style={style.sidebarContent}>
             <ProjectSelector label="Choose your project here:" style={style.projectSelector} />
             <AddProject id="newProjectExpander" label="Or click here to add a new one" style={style.addProject} />
+
           </div>
 
-          <div style={style.topic}>Progress</div>
+          <div style={style.topic} >Progress</div>
 
           <div style={style.sidebarContent}>
-            <div style={style.progress}>
+            <div style={style.progress} >
               <Progress type="data" />
             </div>
-            <div style={style.progress}>
+            <div style={style.progress} >
               <Progress type="features" />
             </div>
-            <div style={style.progress}>
+            <div style={style.progress} >
               <Progress type="models" />
             </div>
             <div style={style.progress}>
@@ -279,12 +280,12 @@ class MainContent extends React.Component {
         <div className="mainContent" style={style.main}>
 
         <div
-          style={{width: 10, height: 20, left: "15%", top: "40%", position: "absolute", backgroundColor: "red"}}
+          style={{width: 10, height: 20, left: "5%", top: "40%", position: "absolute", backgroundColor: "red"}}
           className="stop-1"
         />
           <div
           style={{width: 10, height: 20, left: "25%", top: "40%", position: "absolute", backgroundColor: "blue"}}
-          className="stop-2"
+          
         />
 
           <Notifications style={style.notifications} />
@@ -330,12 +331,6 @@ class MainContent extends React.Component {
                 title: <div style={tourTitleStyle}>Make predictions!</div>,
                 body: <div style={tourMessageStyle}>Select your dataset and model to make a prediction.</div>,
                 position: "bottom"
-              },
-              {
-                step: 6,
-                selector: ".stop-6",
-                title: <div style={tourTitleStyle}>What?</div>,
-                body: <div style={tourMessageStyle}>well even take care of scrolling to elements outside of the viewbox. Enjoy! </div>
               }
             ]}
           />
@@ -353,6 +348,7 @@ class MainContent extends React.Component {
                 data-tip
                 data-for="datasetsTabTooltip"
                 style={style.disableable}
+                className="stop-2"
               >
                 Data
               </Tab>
@@ -360,6 +356,7 @@ class MainContent extends React.Component {
                 data-tip
                 data-for="featuresTabTooltip"
                 style={style.disableable}
+                className="stop-3"
               >
                 Features
               </Tab>
@@ -367,6 +364,7 @@ class MainContent extends React.Component {
                 data-tip
                 data-for="modelsTabTooltip"
                 style={style.disableable}
+                className="stop-4"
               >
                 Models
               </Tab>
@@ -374,6 +372,7 @@ class MainContent extends React.Component {
                 data-tip
                 data-for="predictTabTooltip"
                 style={style.disableable}
+                className="stop-5"
               >
                 Predict
               </Tab>
